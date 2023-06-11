@@ -336,7 +336,8 @@ export interface ResolvedServerUrls {
 export async function createServer(
   inlineConfig: InlineConfig = {},
 ): Promise<ViteDevServer> {
-  return _createServer(inlineConfig, { ws: true })
+  const ws = inlineConfig.server?.hmr !== false
+  return _createServer(inlineConfig, { ws })
 }
 
 export async function _createServer(
